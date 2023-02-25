@@ -2,3 +2,6 @@
     display: flex;
     font-size: 46px;
 }
+.restart {
+    cursor: pointer;
+}
