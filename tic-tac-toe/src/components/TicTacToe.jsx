@@ -1,8 +1,7 @@
 /* eslint-disable no-unreachable-loop */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Button } from '@mui/material'
 import './tic-tac-toe.css'
-import RestartAltIcon from '@mui/icons-material/RestartAlt'
 
 function getInitialState () {
   const state = {}
@@ -31,9 +30,22 @@ const Tictactoe = () => {
   const [values, setValues] = useState(getInitialState)
   const [player, setPlayer] = useState(1)
   const [winner, setWinner] = useState(null)
+  const [score, setScore] = useState({ player1: 0, player2: 0 })
+
+  useEffect(() => {
+    localStorage.setItem('score', JSON.stringify(score))
+  }, [score])
+
+  useEffect(() => {
+    if (winner === 1) {
+      setScore({ ...score, player1: score.player1 + 1 })
+    } else if (winner === -1) {
+      setScore({ ...score, player2: score.player2 + 1 })
+    }
+  }, [winner])
 
   function handleClick (key) {
-    if (values[key] || values[key]) {
+    if (winner || values[key]) {
       return
     }
     const newValues = {
@@ -113,15 +125,6 @@ const Tictactoe = () => {
                     </Button>
                 ))}
             </Box>
-            {(winner || itsATie) && (
-            <Box>
-            {winner
-              ? (<p>O ganhador é: {winner > 0 ? 'O' : 'X'}</p>)
-              : (<p>Houve um empate</p>
-                )}
-            <RestartAltIcon className='restart' onClick={reset} />
-            </Box>
-            )}
         </Box>
   )
 }
