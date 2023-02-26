@@ -1,6 +1,8 @@
 /* eslint-disable no-unreachable-loop */
 import React, { useState, useEffect } from 'react'
 import { Box, Button } from '@mui/material'
+import WinDialog from './dialogs/WinDialog'
+import TieDialog from './dialogs/TieDialog'
 import './tic-tac-toe.css'
 
 function getInitialState () {
@@ -66,6 +68,7 @@ const Tictactoe = () => {
     setPlayer(1)
   }
   const itsATie = Object.values(values).filter(Boolean).length === 9 && !winner
+
   function getWinner (values) {
     for (let row = 0; row < 3; row++) {
       for (let column = 0; column < 3; column++) {
@@ -118,12 +121,15 @@ const Tictactoe = () => {
                 {Array.from({ length: 9 }).map((item, index) => (
                     <Button onClick={() => handleClick(getKeyFromIndex(index))} sx={{
                       color: 'white',
-                      border: '1px solid white'
+                      border: '1px solid white',
+                      minHeight: '5rem'
                     }}
                       key={index}>
                         {getLabel(values[getKeyFromIndex(index)])}
                     </Button>
                 ))}
+                {winner ? <WinDialog reset={reset} score={score} winner={winner}/> : <TieDialog reset={reset} ItsATie={itsATie}/>
+                }
             </Box>
         </Box>
   )
