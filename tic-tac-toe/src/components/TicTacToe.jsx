@@ -122,7 +122,8 @@ const Tictactoe = () => {
                     <Button onClick={() => handleClick(getKeyFromIndex(index))} sx={{
                       color: 'white',
                       border: '1px solid white',
-                      minHeight: '5rem'
+                      minHeight: '5rem',
+                      fontSize: '16px'
                     }}
                       key={index}>
                         {getLabel(values[getKeyFromIndex(index)])}
