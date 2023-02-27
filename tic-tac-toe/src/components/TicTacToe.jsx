@@ -67,6 +67,13 @@ const Tictactoe = () => {
     setValues(getInitialState)
     setPlayer(1)
   }
+  function parsingWinner (winner) {
+    if (winner === -1) {
+      return winner + 3
+    } else if (winner === 1) {
+      return winner
+    }
+  }
   const itsATie = Object.values(values).filter(Boolean).length === 9 && !winner
 
   function getWinner (values) {
@@ -119,7 +126,7 @@ const Tictactoe = () => {
             }}
             >
                 {Array.from({ length: 9 }).map((item, index) => (
-                    <Button onClick={() => handleClick(getKeyFromIndex(index))} sx={{
+                    <Button className='cells' onClick={() => handleClick(getKeyFromIndex(index))} sx={{
                       color: 'white',
                       border: '1px solid white',
                       minHeight: '5rem',
@@ -129,7 +136,7 @@ const Tictactoe = () => {
                         {getLabel(values[getKeyFromIndex(index)])}
                     </Button>
                 ))}
-                {winner ? <WinDialog reset={reset} score={score} winner={winner}/> : <TieDialog reset={reset} ItsATie={itsATie}/>
+                {winner ? <WinDialog reset={reset} score={score} winner={parsingWinner(winner)}/> : <TieDialog reset={reset} ItsATie={itsATie}/>
                 }
             </Box>
         </Box>
