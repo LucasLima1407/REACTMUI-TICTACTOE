@@ -15,7 +15,7 @@ function WinDialog ({ reset, score, winner }) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Jogador 1 {score.player1} x {score.player2} Jogador 2
+            Jogador O {score.player1} x {score.player2} Jogador X
           </DialogContentText>
         </DialogContent>
         <DialogActions>
