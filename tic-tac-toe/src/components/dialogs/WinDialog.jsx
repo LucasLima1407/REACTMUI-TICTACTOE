@@ -5,7 +5,7 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt'
 function WinDialog ({ reset, score, winner }) {
   return (
     <Dialog
-        open={winner === 1 || -1}
+        open={winner === 1 || 2}
         close={reset}
         fullWidth
         maxWidth="sm"
@@ -15,7 +15,7 @@ function WinDialog ({ reset, score, winner }) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Jogador  {score.player1} x {score.player2} Jogador 2
+            Jogador 1 {score.player1} x {score.player2} Jogador 2
           </DialogContentText>
         </DialogContent>
         <DialogActions>
